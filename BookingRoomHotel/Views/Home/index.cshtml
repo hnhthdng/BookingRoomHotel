@@ -1,0 +1,604 @@
+﻿@model BookingRoomHotel.ViewModels.CustomerViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Author: Trung Kien - QE170207
+    Was designed at: 1.00 PM - 14/09/23
+    Copyright belonged to Group 5 - SE17.NET - FPTU
+    Please don't re-up our enthusiasm project in anyways - Great Thanks!
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcome | Kiot Hotel</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7.0.8/swiper-bundle.min.css" /> <!-- Swiper CSS-->
+    <!--More template-->
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .h-font {
+            font-family: 'Merienda', cursive;
+        }
+
+        .custom-bg {
+            background-color: #2ec1ac;
+        }
+
+
+            .custom-bg:hover {
+                background-color: #3d279e;
+            }
+    </style>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body class="bg-light8">
+    <!--Carousel-->
+    <section class="home-slider owl-carousel">
+        <div class="slider-item" style="background-image:url(images/IMG_15372.png);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-12 ftco-animate text-center">
+                        <div class="text mb-5 pb-3">
+                            <h1 class="mb-3">Welcome To Kiot Hotel </h1>
+                            <h2 class="">Luxury - Modern - Convenient</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item" style="background-image:url(images/IMG_55677.png);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-12 ftco-animate text-center">
+                        <div class="text mb-5 pb-3">
+                            <h1 class="mb-3">Enjoy A Luxury Experience</h1>
+                            <h2>Join With Us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item" style="background-image:url(images/IMG_40905.png);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-12 ftco-animate text-center">
+                        <div class="text mb-5 pb-3">
+                            <h1 class="mb-3">We Are Always Highly Appreciate Your Feelings</h1>
+                            <h2>Join With Us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item" style="background-image:url(images/IMG_62045.png);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-12 ftco-animate text-center">
+                        <div class="text mb-5 pb-3">
+                            <h1 class="mb-3">Greatest Thanks From Your Booking</h1>
+                            <h2>Join With Us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Check availablity Once -->
+    <section class="ftco-booking">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form asp-action="Index" asp-controller="Home" onsubmit="saveSearchInfo()" class="booking-form" id="formSearch">
+                        <div class="row justify-content-between">
+                            <div class="col-md-2 d-flex">
+                                <div class="form-group p-4 align-self-stretch d-flex align-items-center">
+                                    <div class="wrap">
+                                        <label for="#">Check-in</label>
+                                        <div class="select-wrap">
+                                            <input asp-for="SearchRoomViewModel.CheckInDate" name="CheckInDate" type="text" class="form-control checkin_date">
+                                            <div class="icon"><span class="bi bi-caret-down"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex">
+                                <div class="form-group p-4 align-self-stretch d-flex align-items-center">
+                                    <div class="wrap">
+                                        <label for="#">Check-out</label>
+                                        <div class="select-wrap">
+                                            <input asp-for="SearchRoomViewModel.CheckOutDate" name="CheckOutDate" type="text" class="form-control checkout_date" placeholder="">
+                                            <div class="icon"><span class="bi bi-caret-down"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 d-flex">
+                                <div class="form-group p-4 align-self-stretch d-flex align-items-center">
+                                    <div class="wrap">
+                                        <label for="#">Room Types</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="bi bi-caret-down"></span></div>
+                                                <select asp-for="SearchRoomViewModel.RoomType" name="RoomType" id="" class="form-control">
+                                                    <span class="bi bi-caret-down"></span>
+                                                    <option value="" style="display:none;"></option>
+                                                    <option value="1">Suite Room</option>
+                                                    <option value="2">Classic Room</option>
+                                                    <option value="3">Family Room</option>
+                                                    <option value="4">Deluxe Room</option>
+                                                    <option value="5">Superior Room</option>
+                                                    <option value="6">Luxury Room</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex">
+                                <div class="form-group p-4 align-self-stretch d-flex align-items-center">
+                                    <div class="wrap">
+                                        <label for="#">Area</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <span> > </span><output id="outArea">30</output><span> m<sup>2</sup></span>
+                                                <input asp-for="SearchRoomViewModel.AreaFrom" name="Area" type="range" value="30" min="30" step="5" max="100" oninput="document.getElementById('outArea').value = this.value">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex">
+                                <div class="form-group p-4 align-self-stretch d-flex align-items-center">
+                                    <div class="wrap">
+                                        <label for="#">Price</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <span> > </span><output id="outPrice">100</output><span> $</span>
+                                                <input asp-for="SearchRoomViewModel.PriceFrom" name="Price" type="range" value="100" min="100" step="100" max="5000" oninput="document.getElementById('outPrice').value = this.value">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md d-flex">
+                                <div class="form-group d-flex align-self-stretch">
+                                    <input type="submit" class="btn btn-primary py-3 px-4 align-self-stretch">
+                                </div>
+                            </div>
+                        </div>
+                        <span id="SearchError" class="text-danger"></span>
+                    </form>
+                </div>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <section class="ftco-section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5 pb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR ROOMS</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var room in Model.HomeViewModel.ListRoomsRandom)
+                    {
+                        <div class="col-sm col-md-6 col-lg-4 ftco-animate">
+                            <div class="room">
+                                <a href="room.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/Admin/Rooms/@room.RoomImage)">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="bi bi-search"></i>
+                                    </div>
+                                </a>
+                                <div class="text p-3 text-center">
+                                    <h3 class="mb-3"><a>Room Number: @room.RoomNumber</a></h3>
+                                    <p><span class="price mr-2">$@room.Price.00</span> <span class="per">per night</span></p>
+                                    <hr>
+                                    <p class="pt-1">
+                                        <a type="button" class="btn-custom" data-toggle="modal" data-target="#add_event1" onclick="setFormBooking(@room.RoomID, @room.Price)">Booking Now<span class="bi bi-arrow-right"></span></a>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Facilities -->
+    <div class="row no-gutters justify-content-center">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR FACILITIES</h2>
+        </div>
+    </div>
+
+    <!---->
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services py-4 d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-reception-bell"></span>
+                            </div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">24/7 Front Desk</h3>
+                            <p>Convenient with all of your time.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services py-4 d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-serving-dish"></span>
+                            </div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">Restaurant Bar</h3>
+                            <p>Delicicous food and love!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex align-sel Searchf-stretch ftco-animate">
+                    <div class="media block-6 services py-4 d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-car"></span>
+                            </div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">Transfer Services</h3>
+                            <p>Convenient transferrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services py-4 d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="flaticon-spa"></span>
+                            </div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">Spa Suites</h3>
+                            <p>Relax and chillllllllllllllllllllllllllllllllllllllll</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---->
+    <!--Feedback-->
+    <div class="row no-gutters justify-content-center pb-5">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">FEEDBACKS</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="swiper swiper_fb">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center p-3 mb-1">
+                        <img src="images/features/customers.svg" width="30px">
+                        <h6 class="m-0 ms-2">Thái Dương</h6>
+                    </div>
+                    <p>
+                        Ok ban eiiiiiiiii
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        Toi yeu em nhieu lam
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center p-4">
+                        <img src="images/features/customers.svg" width="30px">
+                        <h6 class="m-0 ms-2">Con vợ Thái Dương</h6>
+                    </div>
+                    <p>
+                        Ok ban eiiiiiiiii
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        Toi yeu em nhieu lam
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center p-4">
+                        <img src="images/features/customers.svg" width="30px">
+                        <h6 class="m-0 ms-2">Con vợ Thái Dương</h6>
+                    </div>
+                    <p>
+                        Ok ban eiiiiiiiii
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        Toi yeu em nhieu lam
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!-- Contact -->
+    <div class="row no-gutters justify-content-center pb-5">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">CONTACT US</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-light rounded">
+                <iframe class="w-100 rounded" height="300px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.5847248662644!2d109.21657047421918!3d13.803889596087158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f6bf778c80973%3A0x8a7d0b5aa0af29c7!2sFPT%20University%20Quy%20Nhon%20AI%20Campus!5e0!3m2!1sen!2s!4v1695803634294!5m2!1sen!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <div class="bg-light rounded p-4 mb-4">
+                    <h5>Call us: </h5>
+                    <a href="" class="d-inline-block mb-2 text-decoration-none text-dark">
+                        <i class="bi bi-telephone-forward-fill"></i>  +84964641839
+                    </a>
+                </div>
+
+                <div class="bg-light rounded p-4 mb-4">
+                    <h5>Follow us on platform: </h5>
+                    <a href="" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-facebook"></i> Facebook
+                        </span>
+                    </a>
+                    <br>
+                    <a href="" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-instagram"></i> Instagram
+                        </span>
+                    </a>
+                    <br>
+                    <a href="" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-envelope"></i> Gmail
+                        </span>
+                    </a>
+                    <br>
+                    <a href="" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-twitter"></i> Twitter
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Ig-->
+    <section class="instagram">
+        <div class="container-fluid">
+            <div class="row no-gutters justify-content-center pb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">INSTAGRAMS</h2>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-sm-12 col-md ftco-animate">
+                    <a href="~/images/insta-1.jpg" class="insta-img image-popup" style="background-image: url(images/insta-1.jpg);">
+                        <div class="icon d-flex justify-content-center">
+                            <span class="align-self-center bi bi-instagram"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md ftco-animate">
+                    <a href="~/images/insta-2.jpg" class="insta-img image-popup" style="background-image: url(images/insta-2.jpg);">
+                        <div class="icon d-flex justify-content-center">
+                            <span class="align-self-center bi bi-instagram"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md ftco-animate">
+                    <a href="~/images/insta-3.jpg" class="insta-img image-popup" style="background-image: url(images/insta-3.jpg);">
+                        <div class="icon d-flex justify-content-center">
+                            <span class="align-self-center bi bi-instagram"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md ftco-animate">
+                    <a href="~/images/insta-4.jpg" class="insta-img image-popup" style="background-image: url(images/insta-4.jpg);">
+                        <div class="icon d-flex justify-content-center">
+                            <span class="align-self-center bi bi-instagram"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md ftco-animate">
+                    <a href="~/images/insta-5.jpg" class="insta-img image-popup" style="background-image: url(images/insta-5.jpg);">
+                        <div class="icon d-flex justify-content-center">
+                            <span class="align-self-center bi bi-instagram"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="container-fluid bg-white mt-5">
+        <div class="row">
+            <div class="col-lg-4 mt-4">
+                <h3 class="h-font fw-bold fs-3 mb-2">KIOT HOTEL</h3>
+                <p>
+                    Kiot Hotel was established in September 2023, with CEOs in King Of Loser team.
+                    With the goal of always making customers happy and building trust in the first place, we will always bring you services, providing excellent experience in this place.
+                </p>
+            </div>
+
+            <div class="col-lg-4 mt-4">
+                <h5 class="mb-3">Links</h5>
+                <a href="index.html" class="d-inline-block mb-2 text-dark text-decoration-none"> Home </a> <br>
+                <a href="room.html" class="d-inline-block mb-2 text-dark text-decoration-none"> Rooms </a> <br>
+                <a href="facilities.html" class="d-inline-block mb-2 text-dark text-decoration-none"> Facilities </a> <br>
+                <a href="contact.html" class="d-inline-block mb-2 text-dark text-decoration-none"> Contact us </a> <br>
+                <a href="about.html" class="d-inline-block mb-2 text-dark text-decoration-none"> About </a>
+            </div>
+
+            <div class="col-lg-4 mt-4">
+                <h5 class="mb-3">Follow us</h5>
+                <a href="" class="d-inline-block text-dark text-decoration-none mb-2"> <i class="bi bi-envelope"></i> Gmail</a><br>
+                <a href="" class="d-inline-block text-dark text-decoration-none mb-2"> <i class="bi bi-facebook"></i> Facebook</a><br>
+                <a href="" class="d-inline-block text-dark text-decoration-none mb-2"> <i class="bi bi-twitter"></i> Twitter</a><br>
+                <a href="" class="d-inline-block text-dark text-decoration-none mb-2"> <i class="bi bi-instagram"></i> Instagram</a><br>
+            </div>
+        </div>
+    </div>
+    <h6 class="text-center bg-dark text-white p-3 m-0">Developed by KING OF LOSER TEAM - FPTU - SE17B.NET</h6>
+
+    <div id="add_event1" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="return BookingRoom()" id="formBooking">
+                        <input type="hidden" id="BookingRoomID" name="RoomID" />
+                        <span id="RoomID" class="text-danger"></span>
+                        <input type="hidden" id="IdCus" name="CustomerId" />
+                        <span id="CustomerId" class="text-danger"></span>
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label>Check-in Date <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input name="CheckInDate" class="form-control checkin_date" type="text">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                </div>
+                                <span id="CheckInDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label>Check-out Date <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input name="CheckOutDate" class="form-control checkout_date" type="text">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                </div>
+                                <span id="CheckOutDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Service <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text">
+                        </div>
+
+                        <div class="d-flex form-group">
+                            <label>Total Price: <span class="text-danger"></span></label>
+                            <p><h5 class="price" id="BookingPrice"></h5></p>
+                        </div>
+                        <span id="CustomerId" class="text-danger"></span>
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">Checkout</button>
+                        </div>
+
+                        <span id="BookingError" class="text-danger"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper@7.0.8/swiper-bundle.min.js"></script> -->
+    <!--More js file -->
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/jquery.easing.1.3.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/aos.js"></script>
+    <script src="~/js/jquery.animateNumber.min.js"></script>
+    <script src="~/js/bootstrap-datepicker.js"></script>
+    <script src="~/js/scrollax.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script>
+        $("#kt_daterangepicker_1").daterangepicker();
+        document.addEventListener("DOMContentLoaded", function () {
+            var swiper = new Swiper(".swiper_fb", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

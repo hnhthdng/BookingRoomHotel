@@ -1,0 +1,89 @@
+﻿@model BookingRoomHotel.Models.Staff
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div>
+	<div class="mt-5">
+		<div>
+			<div class="col-lg-12">
+				<form onsubmit="return sendJwtAndData('/Staffs/Create', '')" id="formData">
+					<div class="row formtype">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="Id" class="control-label">ID</label>
+								<input asp-for="Id" class="form-control" />
+								<span asp-validation-for="Id" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="Pw" class="control-label"></label>
+								<input asp-for="Pw" class="form-control" />
+								<span asp-validation-for="Pw" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label asp-for="Name" class="control-label"></label>
+								<input asp-for="Name" class="form-control" />
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="Phone" class="control-label"></label>
+								<input asp-for="Phone" class="form-control" />
+								<span asp-validation-for="Phone" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="DateOfBirth" class="control-label"></label>
+								<input asp-for="DateOfBirth" type="date" class="form-control">
+								<span asp-validation-for="DateOfBirth" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="Email" class="control-label"></label>
+								<input asp-for="Email" class="form-control" />
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="Address" class="control-label"></label>
+								<input asp-for="Address" type="text" class="form-control">
+								<span asp-validation-for="Address" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label asp-for="Role" class="control-label"></label>
+							<select asp-for="Role" class="form-select">
+								<option>Admin</option>
+								<option selected>Staff</option>
+								<option>Recept</option>
+							</select>
+							<span asp-validation-for="Role" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="form-group mt-2">
+						<input type="submit" value="Create" class="btn btn-primary" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div>
+	<a onclick="sendJwt('/Staffs/Index','')">Back to List</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
